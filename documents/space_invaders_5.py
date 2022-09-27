@@ -1,18 +1,19 @@
 import pygame # importation de la librairie pygame
 import space
 import sys # pour fermer correctement l'application
-
+import random
 # lancement des modules inclus dans pygame
 pygame.init() 
 
 # création d'une fenêtre de 800 par 600
-screen = pygame.display.set_mode((800,600))
-pygame.display.set_caption("Space Invaders") 
+screen = pygame.display.set_mode((1020,600))
+pygame.display.set_caption("Space Invaders")
+clock=pygame.time.Clock()
 # chargement de l'image de fond
 fond = pygame.image.load('background.png')
 
 # creation du joueur
-player = space.Joueur()
+player = space.joueur()
 # creation de la balle
 tir = space.Balle(player)
 tir.etat = "chargee"
@@ -28,7 +29,7 @@ running = True # variable pour laisser la fenêtre ouverte
 while running : # boucle infinie pour laisser la fenêtre ouverte
     # dessin du fond
     screen.blit(fond,(0,0))
-
+    clock.tick(60)
     ### Gestion des événements  ###
     for event in pygame.event.get(): # parcours de tous les event pygame dans cette fenêtre
         if event.type == pygame.QUIT : # si l'événement est le clic sur la fermeture de la fenêtre
